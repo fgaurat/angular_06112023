@@ -1,0 +1,63 @@
+<h2>todo-list works!</h2>
+<table mat-table [dataSource]="todos$" class="mat-elevation-z8">
+  <!-- Id Column -->
+  <ng-container matColumnDef="todoId">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let todo">{{ todo.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="todoUserId">
+    <th mat-header-cell *matHeaderCellDef>userId</th>
+    <td mat-cell *matCellDef="let todo">{{ todo.userId }}</td>
+  </ng-container>
+  <ng-container matColumnDef="todoTitle">
+    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <td mat-cell *matCellDef="let todo">{{ todo.title }}</td>
+  </ng-container>
+  <ng-container matColumnDef="todoCompleted">
+    <th mat-header-cell *matHeaderCellDef>Completed</th>
+    <td mat-cell *matCellDef="let todo">{{ todo.completed }}</td>
+  </ng-container>
+  <ng-container matColumnDef="todoCBCompleted">
+    <th mat-header-cell *matHeaderCellDef>CBCompleted</th>
+    <td mat-cell *matCellDef="let todo">
+      <mat-checkbox [(ngModel)]="todo.completed"></mat-checkbox>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="todoAction">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let todo">
+      <button mat-flat-button color="warn" (click)="delete(todo)">
+        Delete
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns">
+
+  </tr>
+</table>
+
+<!-- 
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Title</th>
+            <th>Completed</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todo of todos$ | async">
+            <td>{{todo.id}}</td>
+            <td>{{todo.userId}}</td>
+            <td>{{todo.title}}</td>
+            <td>{{todo.completed}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+ -->

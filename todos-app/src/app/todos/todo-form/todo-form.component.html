@@ -1,0 +1,27 @@
+<h2>todo-form works!</h2>
+<form #todoForm="ngForm" (ngSubmit)="save()">
+  <div>
+    <mat-form-field>
+      <mat-label>Todo title</mat-label>
+      <input
+        matInput
+        [(ngModel)]="todoFormModel.title"
+        required
+        name="todoTitle"
+        #todoTitleField="ngModel"
+      />
+
+      <mat-error *ngIf="todoTitleField.invalid">Hoooooo !</mat-error>
+    </mat-form-field>
+  </div>
+  <mat-checkbox [(ngModel)]="todoFormModel.completed" name="todoCompleted"/> Completed ?
+  <pre>
+    title :     {{ todoTitleField.value }}
+    invalid:{{ todoTitleField.invalid }}
+    valid:{{ todoTitleField.valid }}
+    {{ todoFormModel | json }}
+
+    todoForm.valid : {{todoForm.valid}}
+  </pre>
+  <button mat-flat-button color="primary" [disabled]="todoForm.invalid">Submit</button>
+</form>

@@ -1,0 +1,21 @@
+<h2>todo-reactive-form works!</h2>
+<form (ngSubmit)="save()" [formGroup]="todoForm">
+  <div>
+    <mat-form-field>
+      <mat-label>Todo title</mat-label>
+      <input matInput  formControlName="title"/>
+      <div *ngIf="todoForm.controls['title'].errors && (todoForm.controls['title'].dirty || todoForm.controls['title'].touched)">
+          <mat-error *ngIf="todoForm.controls['title'].errors['required']">required</mat-error>
+      </div>
+
+    </mat-form-field>
+  </div>
+  <pre>
+    {{todoForm.controls['title'].errors|json}}
+  </pre>
+  <mat-checkbox name="todoCompleted" formControlName="completed"/> Completed ?
+
+  <button mat-flat-button color="primary" [disabled]="todoForm.invalid">
+    Submit
+  </button>
+</form>
